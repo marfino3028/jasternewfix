@@ -279,7 +279,30 @@
                             @csrf
                             <div class="row col-md-8" style="margin-right: -50px;">
                                 <div class="col-3" style="margin-right: -20px;">
+                                    @if($edit->transaksi_id == 0)
+                                    <input type="hidden" class="transaksi_id addOrder" value="">
+                                    <div class="form-group" id='formPaket'>
+                                        <label>Paket </label>
+                                        <div>
+                                            <select data-input="paket" data-hitung="0"
+                                                class="form-control select2 paket">
+                                                <option value="">None</option>
+                                                <option value="Web & Apps">Web & Apps</option>
+                                                <option value="Business Kit">Business Kit</option>
+                                                <option value="Digital Marketing">Digital Marketing</option>
+                                                <option value="Troubleshooting">Troubleshooting</option>
+                                                <option value="Advertising">Advertising</option>
+                                                <option value="Branding">Branding</option>
+                                            </select>
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Input paket bosz!
+                                        </div>
+                                    </div>
+                                    @endif
                                 	<div id="formTransaksi">
+
+
                                     @foreach ($listTransaksi as $i=>$transaksiData)
                                         <input type="hidden" class="transaksi_id addOrder{{$i}}" value="{{$transaksiData->transaksi_id}}">
                                     @endforeach
@@ -316,6 +339,16 @@
                                 </div>
 
                                 <div class="col-3" style="margin-right: -20px;">
+                                    @if($edit->transaksi_id == 0)
+                                    <div class="form-group addOrder0" id="formQuantity">
+                                        <label>Quantity </label>
+                                        <input type="number" id="quantityInput0 myInput" class="form-control quantity"
+                                            onkeyup="sendQuantity($(this), 0)">
+                                        <div class="invalid-feedback">
+                                            Input Quantity!
+                                        </div>
+                                    </div>
+                                    @endif
                                     @foreach ($listTransaksi as $i=>$itemi)
                                     <div class="form-group addOrder{{$i}}" id="formQuantity">
                                         <label>Quantity </label>
@@ -331,6 +364,16 @@
                                 </div>
 
                                 <div class="col-4" style="margin-right: -20px;">
+                                    @if($edit->transaksi_id == 0)
+                                    <div class="form-group addOrder0" id="formBiaya">
+                                        <label>Biaya </label>
+                                        <input type="number" id="biayaInput0" class="form-control biaya"
+                                        onkeyup="HitungTotal(this);">
+                                        <div class="invalid-feedback">
+                                            Input Biaya
+                                        </div>
+                                    </div>
+                                    @endif
                                     @foreach ($listTransaksi as $i=>$itemii)
                                     <div class="form-group addOrder{{$i}}" id="formBiaya">
                                         <label>Biaya </label>
